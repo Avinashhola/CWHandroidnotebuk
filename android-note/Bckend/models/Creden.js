@@ -8,7 +8,7 @@ const CredSchema = new Schema({    // creating a schema or model for mongoose mo
     email:{
         type:String,
         required:true,
-        unique:true
+        
     },
     password:{
         type:String,
