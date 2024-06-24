@@ -44,7 +44,6 @@ const togglOverButton=()=>{
 {/* <div className={`form-check form-switch text-${props.mode === 'light'? 'dark':'light'} mx-2`}> */}
 <div className="form-check form-switch text-light mx-2">
 
-
   <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"   onClick={togglOverButton}/>
   <label className={`form-check-label text-${mode === "light"? 'black':'white'}`} htmlFor="flexSwitchCheckDefault">Enable toogle</label>
 </div>
@@ -57,5 +56,3 @@ const togglOverButton=()=>{
 }
 
 export default Navbar
-
-
