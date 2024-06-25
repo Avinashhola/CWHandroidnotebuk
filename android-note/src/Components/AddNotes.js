@@ -34,7 +34,7 @@ const addOverClick=(e)=>{
                     <label htmlFor="tag" className="form-label">tag</label>
                     <input type="text" className="form-control" id="tag"  name="taf" onChange={onChange}/>
                 </div>
-                <button type="submit" className="btn btn-primary mx-2" onClick={addOverClick}>AddOver</button>
+                <button disabled={firstAdd.title.length<5 || firstAdd.description.length<5} type="submit" className="btn btn-primary mx-2" onClick={addOverClick}>AddNote</button>
 
             </form>
         </>

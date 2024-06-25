@@ -57,6 +57,9 @@ import {
 
 import NoteState from './Contexts/Notes/NoteState';
 import LandingPage from './Components/LandingPage';
+import Login from './Components/Login';
+import Signup from './Components/Signup';
+
 function App() {
 
 
@@ -71,6 +74,8 @@ function App() {
           <Route exact path="/" element={<LandingPage />} />
             <Route exact path="/Home" element={<Home />} />
             <Route exact path="/About" element={<About />} />
+            <Route exact path="/Login" element={<Login/>} />
+            <Route exact path="/Signup" element={<Signup/>} />
           </Routes>
         </Router>
       </NoteState>

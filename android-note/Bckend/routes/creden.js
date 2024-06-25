@@ -60,18 +60,18 @@ app.post('/createuser', [
    body('email', 'Enter a Valid Email').isEmail(),
    body('password', 'Enter a Valid Password').isLength({ min: 6 })
 ], async (req, res) => {
-
+   let success =false;
    //if there are err return bad req
    const errors = validationResult(req);
    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({success, errors: errors.array() });
    }
 
    try {
       // check whether user is unique in all aspects
       let user = await Userv.findOne({ email: req.body.email })
       if (user) {
-         return res.status(400).json({ error: "sorry enter valid info" });
+         return res.status(400).json({ success, error: "sorry enter valid info" });
       }
       const salt = await bcrypt.genSalt(6);    //creating a salt
       const secPass = await bcrypt.hash(req.body.password, salt)    // hashing our pass 
@@ -88,8 +88,8 @@ app.post('/createuser', [
       }
       const jwtData = jwt.sign(data, JWT_SECPASS)
       console.log(jwtData)
-
-      res.json({ jwtData })
+success = true
+      res.json({ success, jwtData })
       // res.json({user})   
       // res.send(req.body) 
       // res.json({"Verfication":"okay"})
@@ -123,14 +123,17 @@ app.post('/login', [
    }
    //destructuring our mail and pass
    const { email, password } = req.body
+   let success =false
    try {
       let user =await Userv.findOne({ email });
       if (!user) {
-         return res.status(400).json({ error: "sorry enter valid info" });
+     
+         return res.status(400).json({success ,error: "sorry enter valid info" });
       }
       const passwordCompare = await bcrypt.compare(password, user.password);
       if (!passwordCompare) {
-         return res.status(400).json({ error: "sorry enter valid info" });
+         success= false
+         return res.status(400).json({ success, error: "sorry enter valid info" });
       }
 
       const data = {
@@ -140,8 +143,8 @@ app.post('/login', [
       }
       const jwtData = jwt.sign(data, JWT_SECPASS)
       console.log(jwtData)
-
-      res.json({ jwtData })
+success=true
+      res.json({success, jwtData })
 
 
    } catch (error) {

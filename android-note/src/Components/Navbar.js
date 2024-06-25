@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { Link, useLocation} from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import NoteContext from '../Contexts/Notes/NoteContext';
 
 
@@ -15,10 +15,10 @@ const Navbar = () => {
   }, [location])
 
 
-const {mode, toggleMode}= useContext(NoteContext)
-const togglOverButton=()=>{
-  toggleMode()
-}
+  const { mode, toggleMode } = useContext(NoteContext)
+  const togglOverButton = () => {
+    toggleMode()
+  }
 
   return (
     <div>
@@ -39,15 +39,18 @@ const togglOverButton=()=>{
 
 
             </ul>
-{/* toogle button */}
+            {/* toogle button */}
 
-{/* <div className={`form-check form-switch text-${props.mode === 'light'? 'dark':'light'} mx-2`}> */}
-<div className="form-check form-switch text-light mx-2">
+            {/* <div className={`form-check form-switch text-${props.mode === 'light'? 'dark':'light'} mx-2`}> */}
+            <div className="form-check form-switch text-light mx-2">
 
-  <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"   onClick={togglOverButton}/>
-  <label className={`form-check-label text-${mode === "light"? 'black':'white'}`} htmlFor="flexSwitchCheckDefault">Enable toogle</label>
-</div>
-
+              <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick={togglOverButton} />
+              <label className={`form-check-label text-${mode === "light" ? 'black' : 'white'}`}htmlFor="flexSwitchCheckDefault">Enable toogle</label>
+            </div>
+          <form className='d-flex'>
+              <Link className="btn btn-primary mx-1" to ="/login" role="button">Login</Link>
+              <Link className="btn btn-primary mx-1" to ="/signup" role="button">signup</Link>
+          </form>
           </div>
         </div>
       </nav>

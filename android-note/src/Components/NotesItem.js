@@ -62,7 +62,7 @@ import NoteContext from '../Contexts/Notes/NoteContext';
 
 const NotesItem = (props) => {
     const { deleteNote, mode } = useContext(NoteContext);
-    const { usingProps } = props;
+    const { usingProps,updateNote } = props;
 
     const textRefs = useRef([]);
 
@@ -101,7 +101,7 @@ const NotesItem = (props) => {
                 </p>
                 <div className='d-flex justify-content-between'>
                     <i className="fa-sharp fa-solid fa-trash" onClick={deleteOvrClick}></i>
-                    <i className="fa-solid fa-file-pen "></i>
+                    <i className="fa-solid fa-file-pen " onClick={()=>{updateNote(usingProps)}}></i>
                     <i className="fa-solid fa-arrow-up-a-z " onClick={upperOvrClick}></i>
                     <i className="fa-solid fa-down-left-and-up-right-to-center " onClick={lowerOvrClick}></i>
                 </div>

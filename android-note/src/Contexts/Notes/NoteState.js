@@ -4,6 +4,9 @@ import { useState } from 'react'
 
 const NoteState = (props) => {
 
+
+
+    
     const state = {
         'name': 'Avinash',
         'class': '5-Belowavg'
@@ -137,19 +140,13 @@ const NoteState = (props) => {
             },
             body: JSON.stringify({title, description, tag})
         });
-        console.log("adding a new note")
-        const note = {
-            "id": "6936963696371",
-            "user": "komal sharma",
-            "title": title,
-            "description": description,
-            "tag": tag,
-            "date": "2021-01-13",
-            "_v": "1",
-        }                                           // HARDCORED DATA ...........................
-
-
+        // const json = await response.json();
+        // console.log(json)
+        // const note =json                                         // HARDCORED DATA ...........................
         // const note = await response.json();
+
+
+        const note = await response.json();
         setNotes(notes.concat(note))                  //    setNotes(notes.push(note))  --------- it updates the array
 
     }
@@ -174,15 +171,16 @@ const NoteState = (props) => {
             body: JSON.stringify(title, description, tag)
         });
    
-        const json = await response.json();
+        const json = await response.json(); 
         console.log(json)
-
-        for (let index = 0; index < notes.length; index++) {
-            const element = notes[index]
+let newNotes = JSON.parse(JSON.stringify(notes))
+        for (let index = 0; index < newNotes.length; index++) {
+            const element = newNotes[index]
             if (element.id === id) {
-                element.title = title
-                element.description = description
-                element.tag = tag
+                newNotes.title = title
+                newNotes.description = description
+                newNotes.tag = tag
+                break;
             }
         }
 
@@ -191,8 +189,7 @@ const NoteState = (props) => {
         //     note.id === id ? { ...note, title, description, tag } : note
         // ); 
         // setNotes(newNotes);          
-    
-        setNotes(notes);
+        setNotes(newNotes);
 
 
 
